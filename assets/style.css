@@ -1,4 +1,3 @@
-/* =============== Base layout ================= */
 html, body { height: 100%; }
 
 body {
@@ -19,7 +18,6 @@ main {
   padding: 32px 0;
 }
 
-/* =============== Header / Nav ================= */
 header {
   background-color: #2A2A2A;
   color: #EDEDED;
@@ -299,100 +297,164 @@ body.resume-page main.resume-viewer{
 
 
 
-@media (max-width: 430px){
- 
-  header{ padding: 10px 16px; flex-direction: column; gap: 8px; }
-  nav a{ margin: 0 8px; font-size: 14px; }
+html, body {
+  height: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
 
-  main{ padding: 16px 0; }
-  .intro-photo{ width: 76vw; max-width: 280px; border-radius: 16px; }
-  h2{ font-size: 24px; margin: 12px 0 14px; }
-  #intro p{ font-size: 14.5px; line-height: 1.6; padding: 0 12px; }
+body {
+  display: flex;
+  flex-direction: column;
+}
 
+main {
+  flex: 1;
+}
 
-  .project-container{
+/* Footer should always sit at the bottom */
+footer, .site-footer {
+  margin-top: auto;
+  padding: 16px 0;
+  text-align: center;
+}
+
+/* ===== Existing mobile rules ===== */
+@media (max-width: 430px) {
+  header {
+    padding: 10px 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  nav a {
+    margin: 0 8px;
+    font-size: 14px;
+  }
+
+  main {
+    padding: 16px 0;
+  }
+  .intro-photo {
+    width: 76vw;
+    max-width: 280px;
+    border-radius: 16px;
+  }
+  h2 {
+    font-size: 24px;
+    margin: 12px 0 14px;
+  }
+  #intro p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    padding: 0 12px;
+  }
+
+  .project-container {
     flex-direction: column;
     align-items: center;
-    gap: 10px;      
+    gap: 10px;
     overflow: visible;
     padding: 0 20px;
     max-height: none;
   }
-  .project{
+  .project {
     flex: 1 1 90%;
     max-width: 90%;
     width: 90%;
   }
 
-
-  .form-card{
+  .form-card {
     width: 92vw;
     max-width: 92vw;
     padding: 20px 16px;
     border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0,0,0,.28);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
   }
-  .name-fields{ flex-direction: column; gap: 12px; }
-  .input-field input, .input-field textarea{ font-size: 14.5px; }
-  .submit-btn{ width: 100%; }
+  .name-fields {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .input-field input,
+  .input-field textarea {
+    font-size: 14.5px;
+  }
+  .submit-btn {
+    width: 100%;
+  }
 
-  .site-footer, footer{
-    position: static;
+  /* Make sure footer stays in flow, but still bottom-aligned */
+  .site-footer,
+  footer {
+    margin-top: auto;
     padding-bottom: 20px;
   }
 }
 
-.view-below{
-  font-size: 14px; color: #CFCFCF; margin-bottom: 8px;
-  font-family: "Nunito", sans-serif; font-weight: 300;
-}
-
-.noopener{
-  color: #70bef6; font-weight: 300;
-  margin-top: 8px; display: inline-block;  
-
-}
-
-body.resume-page main.resume-viewer{
+/* Resume page rules (unchanged except footer fix) */
+body.resume-page main.resume-viewer {
   padding: 14px 16px 12px;
   margin-top: auto;
 }
-
-body.resume-page .resume-note{ margin-bottom: 10px; font-size: 14px; }
-body.resume-page .resume-card{ width: clamp(320px, 92vw, 700px); padding: 0px; }
-body.resume-page .pdf-frame{
+body.resume-page .resume-note {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+body.resume-page .resume-card {
+  width: clamp(320px, 92vw, 700px);
+  padding: 0px;
+}
+body.resume-page .pdf-frame {
   height: clamp(360px, calc(100dvh - 325px), 900px);
 }
 
-@media (max-width: 430px){
-  body.resume-page .resume-viewer h2{ font-size: 22px; margin: 6px 0; }
-  body.resume-page .resume-note{ display: none; }           
-  body.resume-page .pdf-frame{ height: calc(100svh - 300px); }
+@media (max-width: 430px) {
+  body.resume-page .resume-viewer h2 {
+    font-size: 22px;
+    margin: 6px 0;
+  }
+  body.resume-page .resume-note {
+    display: none;
+  }
+  body.resume-page .pdf-frame {
+    height: calc(100svh - 300px);
+  }
 }
 
-
-@media (max-width: 768px){
-  .project-container{
+@media (max-width: 768px) {
+  .project-container {
     flex-wrap: wrap;
     justify-content: center;
     gap: 18px;
     max-height: none;
     overflow: visible;
   }
-  .project{
+  .project {
     flex: 1 1 calc(50% - 18px);
     max-width: calc(50% - 18px);
   }
 }
 
-@media (max-width: 480px){
-  .project{
+@media (max-width: 480px) {
+  .project {
     flex: 1 1 100%;
     max-width: 80%;
   }
 }
 
+.view-below {
+  font-size: 14px;
+  color: #CFCFCF;
+  margin-bottom: 8px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 300;
+}
 
-html, body{ min-height: 100svh; }
-body{ display: flex; flex-direction: column; }
-main{ flex: 1; }
+.noopener {
+  color: #70bef6;
+  font-weight: 300;
+  margin-top: 8px;
+  display: inline-block;
+}
+
