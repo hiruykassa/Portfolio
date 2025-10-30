@@ -1,48 +1,46 @@
-# My Portfolio (Work in Progress)
+# 🌐 My Portfolio
 
-This is my personal portfolio website built with **HTML, CSS, and JavaScript**.  
-It highlights my academic background, skills, and projects as a **Computer Science & Data Science student** at the University of St. Thomas.
+This is my **personal portfolio website** built with **HTML, CSS, and JavaScript**.  
+It showcases my academic background, technical skills, and projects as a **Computer Science & Data Science student** at the **University of St. Thomas**.
 
 ---
 
-## 📂 Current Features
-- **Home Page** – Professional introduction and summary:contentReference[oaicite:0]{index=0}  
-- **Projects (Coming Soon)** – Space to highlight apps, websites, and academic projects  
-- **Contact** – Page for networking and professional connections  
+## ✨ Features
+- **Home Page** – Professional introduction with a personal summary and image  
+- **Projects Page** – Highlights my academic and personal projects with descriptions and visuals  
+- **Resume Section** – Includes a downloadable PDF of my resume  
+- **Contact Page** – Provides links for networking and professional connections  
+- **Responsive Design** – Optimized for both desktop and mobile devices  
 
 ---
 
 ## 🛠️ Tech Stack
 - **Frontend:** HTML, CSS, JavaScript  
 - **Styling:** Custom CSS (`assets/style.css`) + Google Fonts (Nunito)  
-- **Assets:** Local images (`assets/hiruy.png`) and reusable styles  
+- **Assets:** Local images (`assets/Hiruy.jpeg`) and consistent reusable components  
 
 ---
 
-## 🚧 Status
-- ✅ Basic structure and navigation set up (`home.html`, `projects.html`, `contact.html`):contentReference[oaicite:1]{index=1}  
-- ✅ Intro section with personal summary and image  
-- ⏳ Projects showcase not yet complete  
-- ⏳ Resume section not yet added  
-- ⏳ JavaScript functionality (interactivity, animations, etc.) in progress  
+## 🚀 Deployment
+The website is deployed and publicly accessible via **GitHub Pages**.  
+🔗 **Live Site:** [https://your-hiruykassa.github.io](https://hiruykassa.github.io/Portfolio/)  
+
 
 ---
 
-## 📌 Next Steps
-- Add a **Projects** page with detailed showcases  
-- Build a **Resume** section with a downloadable PDF  
-- Add **JavaScript interactivity** (animations, smooth scrolling, etc.)  
-- Make the site fully **responsive for mobile & desktop**  
-- Deploy online (GitHub Pages, Netlify, or Vercel)  
+## 📈 Future Improvements
+- Add more interactive elements and animations  
+- Integrate a contact form with email notifications  
+- Expand the project showcase with live demos and GitHub links  
 
 ---
 
 ## 📧 Contact
-- **LinkedIn:** [linkedin.com/in/hiruy-kassa](https://linkedin.com/in/hiruy-kassa)  
-- **GitHub:** [github.com/your-username](https://github.com/your-username)  
-- **Email:** your.email@example.com  
+- **LinkedIn:** [linkedin.com/in/hiruy-kassa](https://www.linkedin.com/in/hiruy-kassa-b17922297/)  
+- **GitHub:** [github.com/hiruykassa](https://github.com/hiruykassa)  
+- **Email:** hiruygirmak@gmail.com  
 
 ---
 
 ## 📝 License
-This project is for personal and academic use while learning and building my portfolio.
+This project is for personal and professional use as part of my portfolio.
