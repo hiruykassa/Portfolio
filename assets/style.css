@@ -320,109 +320,141 @@ footer, .site-footer {
   text-align: center;
 }
 
-/* ===== Existing mobile rules ===== */
-@media (max-width: 430px) {
+@media (max-width: 480px) {
   header {
-    padding: 10px 16px;
+    padding: 12px 16px;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
   }
+
   nav a {
-    margin: 0 8px;
+    margin: 0 10px;
     font-size: 14px;
   }
 
   main {
-    padding: 16px 0;
+    padding: 20px 0;
   }
+
   .intro-photo {
-    width: 76vw;
+    width: 80vw;
     max-width: 280px;
-    border-radius: 16px;
+    border-radius: 18px;
   }
+
   h2 {
     font-size: 24px;
-    margin: 12px 0 14px;
+    margin: 14px 0;
   }
+
   #intro p {
-    font-size: 14.5px;
+    font-size: 15px;
     line-height: 1.6;
-    padding: 0 12px;
+    padding: 0 14px;
   }
 
   .project-container {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    overflow: visible;
+    gap: 14px;
     padding: 0 20px;
-    max-height: none;
   }
+
   .project {
-    flex: 1 1 90%;
+    flex: 1 1 100%;
     max-width: 90%;
-    width: 90%;
+    width: 100%;
   }
 
   .form-card {
     width: 92vw;
-    max-width: 92vw;
-    padding: 20px 16px;
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+    padding: 22px 16px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   }
+
   .name-fields {
     flex-direction: column;
     gap: 12px;
   }
+
   .input-field input,
   .input-field textarea {
-    font-size: 14.5px;
+    font-size: 15px;
   }
+
   .submit-btn {
     width: 100%;
   }
 
-  /* Make sure footer stays in flow, but still bottom-aligned */
   .site-footer,
   footer {
-    padding: 12px 8px;
-    font-size: 13px;
+    padding: 14px 8px;
+    font-size: 13.5px;
+    text-align: center;
   }
-}
 
-...
-
-@media (max-width: 430px) {
+  /* ===== Resume Page Adjustments ===== */
   body.resume-page .resume-viewer h2 {
     font-size: 22px;
-    margin: 6px 0;
+    margin: 8px 0;
   }
+
   body.resume-page .resume-note {
     display: none;
   }
+
   body.resume-page .pdf-frame {
-    height: calc(100svh - 300px);
+    height: calc(100svh - 280px);
   }
 }
 
-@media (max-width: 768px) {
+/* ===== Tablets & Small Laptops (481px–768px) ===== */
+@media (min-width: 481px) and (max-width: 768px) {
   .project-container {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 18px;
-    max-height: none;
-    overflow: visible;
+    gap: 20px;
+    padding: 0 24px;
   }
+
   .project {
-    flex: 1 1 calc(50% - 18px);
-    max-width: calc(50% - 18px);
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+
+  .intro-photo {
+    width: 60vw;
+    max-width: 340px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  #intro p {
+    font-size: 15.5px;
   }
 }
 
-@media (max-width: 480px) {
+/* ===== Compact Large Devices (769px–1024px) ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  header {
+    padding: 16px 40px;
+  }
+
+  nav a {
+    font-size: 15px;
+  }
+
+  .project-container {
+    justify-content: center;
+    gap: 22px;
+  }
+
   .project {
-    flex: 1 1 100%;
-    max-width: 80%;
+    flex: 1 1 calc(33.33% - 22px);
+    max-width: calc(33.33% - 22px);
   }
 }
