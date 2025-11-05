@@ -1,6 +1,10 @@
 /* =========================================
    GLOBAL BASE
 ========================================= */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -21,6 +25,7 @@ main {
   flex: 1;
   margin: 0 auto;
   width: 100%;
+  max-width: 100%;
   text-align: center;
   padding: 32px 16px;
 }
@@ -37,6 +42,7 @@ header {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 h1 {
@@ -78,7 +84,7 @@ h2 {
   max-width: 90%;
   border-radius: 10%;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 #intro p {
@@ -252,6 +258,7 @@ body.projects-page main {
   padding: 32px 36px;
   margin: 0 auto;
   max-width: 900px;
+  width: 100%;
   border-radius: 12px;
   text-align: left;
   box-shadow: 0 0 18px rgba(0,0,0,0.35);
@@ -289,6 +296,7 @@ body.projects-page main {
   font-family: inherit;
   outline: none;
   transition: border-color .2s, box-shadow .2s;
+  width: 100%;
 }
 
 .input-field textarea {
@@ -326,46 +334,108 @@ body.resume-page main.resume-viewer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 20px 16px;
+  padding: 40px 20px;
+  gap: 20px;
 }
 
 .resume-viewer h2 {
   color: #EDEDED;
-  font-size: 28px;
-  margin: 6px 0;
+  font-size: 32px;
+  margin: 0;
+  font-weight: 600;
 }
 
-.resume-note {
-  color: #CFCFCF;
-  margin-bottom: 12px;
+.resume-subtitle {
+  color: #9A9A9A;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 8px 0 0 0;
+  letter-spacing: 0.3px;
+}
+
+.view-below {
+  color: #9A9A9A;
   font-size: 15px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
   text-align: center;
 }
 
-.resume-note a {
+.view-below a {
   color: #9ac7e8;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.resume-note a:hover {
+.view-below a:hover {
+  color: #b8d9f0;
   text-decoration: underline;
 }
 
+.resume-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.resume-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #EDEDED;
+  transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.view-btn {
+  background-color: #0077b5;
+}
+
+.view-btn:hover {
+  background-color: #0a66c2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+}
+
+.download-btn {
+  background-color: #2A2A2A;
+  border: 1px solid #444;
+}
+
+.download-btn:hover {
+  background-color: #333;
+  border-color: #666;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
 .resume-card {
-  width: clamp(320px, 94vw, 1100px);
+  width: 100%;
+  max-width: 1100px;
   background: #2A2A2A;
-  border-radius: 14px;
-  box-shadow: 0 10px 28px rgba(0,0,0,.35);
-  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.5);
+  padding: 16px;
+  margin: 0 auto;
 }
 
 .pdf-frame {
   width: 100%;
-  height: clamp(400px, 80vh, 880px);
-  border-radius: 10px;
+  height: 85vh;
+  min-height: 600px;
+  border-radius: 12px;
   background: #1f1f1f;
   overflow: hidden;
+  border: 1px solid #333;
 }
 
 .pdf-frame iframe {
@@ -451,17 +521,42 @@ footer, .site-footer {
   .input-field {
     min-width: 100%;
   }
+
+  .resume-viewer h2 {
+    font-size: 26px;
+  }
+
+  .resume-subtitle {
+    font-size: 14px;
+  }
+
+  .view-below {
+    font-size: 14px;
+  }
+
+  .resume-actions {
+    gap: 12px;
+  }
+
+  .resume-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .pdf-frame {
+    height: 70vh;
+    min-height: 500px;
+  }
+
+  .resume-card {
+    padding: 12px;
+  }
 }
 
 @media (max-width: 430px) {
   .pdf-frame {
-    height: 60vh !important;
-    min-height: 400px;
-  }
-
-  .resume-note {
-    font-size: 13px;
-    padding: 0 12px;
+    height: 65vh;
+    min-height: 450px;
   }
 
   header {
@@ -482,5 +577,29 @@ footer, .site-footer {
 
   .form-card {
     padding: 20px 16px;
+  }
+
+  .resume-viewer h2 {
+    font-size: 24px;
+  }
+
+  .resume-subtitle {
+    font-size: 13px;
+  }
+
+  .view-below {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .resume-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .resume-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
