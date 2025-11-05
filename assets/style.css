@@ -314,7 +314,6 @@ main {
   flex: 1;
 }
 
-/* Footer should always sit at the bottom */
 footer, .site-footer {
   margin-top: auto;
   padding: 16px 0;
@@ -392,22 +391,7 @@ footer, .site-footer {
   }
 }
 
-/* Resume page rules (unchanged except footer fix) */
-body.resume-page main.resume-viewer {
-  padding: 14px 16px 12px;
-  margin-top: auto;
-}
-body.resume-page .resume-note {
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-body.resume-page .resume-card {
-  width: clamp(320px, 92vw, 700px);
-  padding: 0px;
-}
-body.resume-page .pdf-frame {
-  height: clamp(360px, calc(100dvh - 325px), 900px);
-}
+...
 
 @media (max-width: 430px) {
   body.resume-page .resume-viewer h2 {
@@ -442,19 +426,3 @@ body.resume-page .pdf-frame {
     max-width: 80%;
   }
 }
-
-.view-below {
-  font-size: 14px;
-  color: #CFCFCF;
-  margin-bottom: 8px;
-  font-family: "Nunito", sans-serif;
-  font-weight: 300;
-}
-
-.noopener {
-  color: #70bef6;
-  font-weight: 300;
-  margin-top: 8px;
-  display: inline-block;
-}
-
