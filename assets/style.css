@@ -387,8 +387,8 @@ footer, .site-footer {
   /* Make sure footer stays in flow, but still bottom-aligned */
   .site-footer,
   footer {
-    margin-top: auto;
-    padding-bottom: 20px;
+    padding: 12px 8px;
+    font-size: 13px;
   }
 }
 
