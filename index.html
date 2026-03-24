@@ -1,45 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600&display=swap" rel="stylesheet" />
-    <title>Hiruy Kassa • Portfolio</title>
-  </head>
-  <body id="top" class="no-scroll-layout">
-    <header>
-      <h1>Portfolio</h1>
-      <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hiruy Kassa</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <main class="fit-screen">
-      <section id="intro" class="intro-hero">
-        <img src="assets/Hiruy.jpeg" alt="Hiruy Kassa" class="intro-photo" />
-        <div class="intro-copy">
-          <h2>Welcome to my portfolio. I'm Hiruy Kassa.</h2>
-          <p>
-            I'm a junior at the University of St. Thomas majoring in Computer Science with a minor in Data Science (3.8 GPA).
-            I build AI-powered applications and data-driven systems that solve real-world problems. My work spans machine learning,
-            large-scale data analysis, and software engineering—from implementing AI-driven content ranking systems to analyzing
-            100k+ record datasets for actionable insights. I'm passionate about applied AI research, particularly in vision and
-            language models, and I'm actively seeking opportunities to contribute to cutting-edge research in multimodal AI systems.
-            I thrive in collaborative environments where I can apply computational thinking, experimental problem-solving, and
-            technical expertise to create meaningful impact.
-          </p>
-        </div>
-      </section>
-    </main>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a {
+      color: #64b5f6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    nav {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      gap: 3rem;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #333;
+    }
+
+    nav a {
+      color: #999;
+      transition: color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #e8e8e8;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 2rem 0 1.5rem 0;
+      color: #fff;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #b8b8b8;
+      line-height: 1.8;
+    }
+
+    .intro-text {
+      color: #999;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .bio {
+      background: #111;
+      padding: 1.5rem;
+      border-left: 2px solid #64b5f6;
+      margin-bottom: 2rem;
+      border-radius: 2px;
+    }
+
+    .bio-item {
+      color: #b8b8b8;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .bio-label {
+      color: #64b5f6;
+      font-weight: 600;
+    }
+
+    .status {
+      color: #64b5f6;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .experience-item {
+      margin-bottom: 3rem;
+    }
+
+    .experience-date {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-desc {
+      color: #b8b8b8;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .project {
+      margin-bottom: 3rem;
+    }
+
+    .project-title {
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .project-meta {
+      font-size: 0.75rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-meta a {
+      margin-right: 1rem;
+    }
+
+    .project-tech {
+      color: #666;
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+      word-spacing: 0.5rem;
+    }
+
+    .tech-badge {
+      display: inline-block;
+      background: #1a3a4a;
+      color: #64b5f6;
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      color: #b8b8b8;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .social-links {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #333;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #e8e8e8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      border-bottom: 1px solid #666;
+      padding-bottom: 0.2rem;
+    }
+
+    .social-link:hover {
+      color: #64b5f6;
+      border-bottom-color: #64b5f6;
+    }
+
+    .social-icon {
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+    }
+
+    .updated {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .two-column {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      nav {
+        gap: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .social-link {
+        width: fit-content;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-link active" data-page="home">home</a>
+  <a href="#" class="nav-link" data-page="books">books</a>
+  <a href="#" class="nav-link" data-page="philosophy">philosophy</a>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 1.5rem;">Hi, I'm Hiruy 👨‍💻</h1>
+
+    <div style="text-align: center; margin-bottom: 2.5rem; color: #b8b8b8; font-size: 0.9rem; line-height: 2;">
+      <span><span class="bio-label">Degree:</span> B.S. Computer Science</span>
+      <span style="margin: 0 1rem; color: #444;">·</span>
+      <span><span class="bio-label">Graduating:</span> May 2027</span>
+      <span style="margin: 0 1rem; color: #444;">·</span>
+      <span><span class="bio-label">GPA:</span> 3.6, Dean's List</span>
+      <span style="margin: 0 1rem; color: #444;">·</span>
+      <span><span class="bio-label">Location:</span> Saint Paul, MN</span>
+      <br/>
+      <span><span class="bio-label">Status:</span> Seeking Summer 2026 internships (SWE & Data Science)</span>
+    </div>
     
-    <footer class="site-footer">
-      <p>© 2025 Hiruy Kassa</p>
-    </footer>
+    <div class="two-column">
+      <div>
+        <h2 style="margin-top: 0;">Experience</h2>
+        
+        <div class="experience-item">
+          <div class="experience-date">May – Aug 2024</div>
+          <h3>Software & Data Engineering Intern</h3>
+          <p style="color: #999; font-size: 0.9rem; margin-bottom: 0.5rem;">VivaTC</p>
+          <div class="experience-desc">Built Python data pipelines processing 100K+ telecom records daily. Analyzed customer usage patterns and data quality issues. Delivered insights that informed product and strategy decisions.</div>
+        </div>
 
-    <script src="assets/script.js"></script>
-  </body>
+        <div class="experience-item">
+          <div class="experience-date">Jan – May 2025</div>
+          <h3>IT Support Specialist</h3>
+          <p style="color: #999; font-size: 0.9rem; margin-bottom: 0.5rem;">St. Olaf College</p>
+          <div class="experience-desc">Supported 3,000+ students and staff. Maintained 90%+ same-day resolution rate on technical issues. Improved processes and reduced repeat tickets by 40% through documentation and workflow optimization.</div>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="margin-top: 0;">Projects</h2>
+
+        <div class="project">
+          <div class="project-title">E-Commerce Funnel Analysis</div>
+          <div class="project-meta"><a href="https://github.com/hiruykassa/Ecommerce-Funnel-Analysis">github</a></div>
+          <div>
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Pandas</span>
+            <span class="tech-badge">Data Analysis</span>
+            <span class="tech-badge">RFM</span>
+          </div>
+          <div class="project-desc">Analyzed 100K+ transaction records to identify funnel drop-offs and customer segments. RFM analysis revealed 15%+ potential revenue lift through targeted retention strategies.</div>
+        </div>
+
+        <div class="project">
+          <div class="project-title">Bank Account System</div>
+          <div class="project-meta"><a href="https://github.com/hiruykassa">github</a></div>
+          <div>
+            <span class="tech-badge">C++</span>
+            <span class="tech-badge">OOP</span>
+            <span class="tech-badge">Systems</span>
+            <span class="tech-badge">Testing</span>
+          </div>
+          <div class="project-desc">Full-featured banking system with account management, deposits, and withdrawals. Built with clean encapsulation, modular design patterns, and comprehensive test coverage.</div>
+        </div>
+
+        <div class="project">
+          <div class="project-title">FlagFinder</div>
+          <div class="project-meta"><a href="https://github.com/hiruykassa/FlagFinder">github</a></div>
+          <div>
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Flask</span>
+            <span class="tech-badge">Web</span>
+          </div>
+          <div class="project-desc">Lightweight web application for searching countries and displaying flags. Minimal, focused design optimized for speed and simplicity.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="mailto:hiruygirmak@gmail.com" class="social-link">
+        <span class="social-icon">✉</span>
+        <span>hiruygirmak@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" class="social-link">
+        <span class="social-icon">in</span>
+        <span>linkedin.com/in/hiruykassa</span>
+      </a>
+      <a href="https://github.com/hiruykassa" class="social-link">
+        <span class="social-icon">⚙</span>
+        <span>github.com/hiruykassa</span>
+      </a>
+    </div>
+
+    <p class="updated">updated 03/23/2026</p>
+  </div>
+</div>
+
+<!-- BOOKS PAGE -->
+<div id="books" class="page">
+  <div class="container">
+    <h1>Books 📚</h1>
+    <p class="intro-text">Soon to be added</p>
+
+    <div class="social-links">
+      <a href="mailto:hiruygirmak@gmail.com" class="social-link">
+        <span class="social-icon">✉</span>
+        <span>hiruygirmak@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" class="social-link">
+        <span class="social-icon">in</span>
+        <span>linkedin.com/in/hiruykassa</span>
+      </a>
+      <a href="https://github.com/hiruykassa" class="social-link">
+        <span class="social-icon">⚙</span>
+        <span>github.com/hiruykassa</span>
+      </a>
+    </div>
+
+    <p class="updated">updated 03/23/2026</p>
+  </div>
+</div>
+
+<!-- PHILOSOPHY PAGE -->
+<div id="philosophy" class="page">
+  <div class="container">
+    <h1>Philosophy & Theology ☦</h1>
+    <p class="intro-text">Soon to be added</p>
+
+    <div class="social-links">
+      <a href="mailto:hiruygirmak@gmail.com" class="social-link">
+        <span class="social-icon">✉</span>
+        <span>hiruygirmak@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" class="social-link">
+        <span class="social-icon">in</span>
+        <span>linkedin.com/in/hiruykassa</span>
+      </a>
+      <a href="https://github.com/hiruykassa" class="social-link">
+        <span class="social-icon">⚙</span>
+        <span>github.com/hiruykassa</span>
+      </a>
+    </div>
+
+    <p class="updated">updated 03/23/2026</p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = link.dataset.page;
+      
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      
+      // Show selected page
+      document.getElementById(page).classList.add('active');
+      
+      // Update nav
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    });
+  });
+</script>
+
+</body>
 </html>
