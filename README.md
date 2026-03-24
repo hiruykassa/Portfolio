@@ -6,8 +6,8 @@ It showcases my academic background, technical skills, and projects as a **Compu
 ---
 
 ## ✨ Features
-- **Home Page** – Professional introduction with a personal summary and image  
-- **Projects Page** – Highlights my academic and personal projects with descriptions and visuals  
+- **Home Page** – Professional introduction with personal summary and image  
+- **Projects Page** – Highlights academic and personal projects with descriptions and visuals  
 - **Resume Section** – Includes a downloadable PDF of my resume  
 - **Contact Page** – Provides links for networking and professional connections  
 - **Responsive Design** – Optimized for both desktop and mobile devices  
@@ -17,14 +17,13 @@ It showcases my academic background, technical skills, and projects as a **Compu
 ## 🛠️ Tech Stack
 - **Frontend:** HTML, CSS, JavaScript  
 - **Styling:** Custom CSS (`assets/style.css`) + Google Fonts (Nunito)  
-- **Assets:** Local images (`assets/Hiruy.jpeg`) and consistent reusable components  
+- **Assets:** Local images (`assets/Hiruy.jpeg`) and reusable components  
 
 ---
 
 ## 🚀 Deployment
 The website is deployed and publicly accessible via **GitHub Pages**.  
-🔗 **Live Site:** [https://your-hiruykassa.github.io](https://hiruykassa.github.io/Portfolio/)  
-
+🔗 **Live Site:** [https://hiruykassa.github.io/Portfolio/](https://hiruykassa.github.io/Portfolio/)  
 
 ---
 
@@ -36,7 +35,7 @@ The website is deployed and publicly accessible via **GitHub Pages**.
 ---
 
 ## 📧 Contact
-- **LinkedIn:** [linkedin.com/in/hiruy-kassa](https://www.linkedin.com/in/hiruy-kassa-b17922297/)  
+- **LinkedIn:** [linkedin.com/in/hiruy-kassa-b17922297](https://www.linkedin.com/in/hiruy-kassa-b17922297/)  
 - **GitHub:** [github.com/hiruykassa](https://github.com/hiruykassa)  
 - **Email:** hiruygirmak@gmail.com  
 
