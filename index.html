@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hiruy Kassa</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
   <style>
+    :root[data-theme="dark"] {
+      --bg: #0a0a0a;
+      --text: #e8e8e8;
+      --heading: #ffffff;
+      --muted: #b8b8b8;
+      --dim: #999999;
+      --faint: #666666;
+      --accent: #64b5f6;
+      --card: #111111;
+      --border: #333333;
+      --badge-bg: #1a3a4a;
+      --badge-text: #64b5f6;
+      --dot: #444444;
+    }
+
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --text: #1f2328;
+      --heading: #0d1117;
+      --muted: #424a53;
+      --dim: #57606a;
+      --faint: #8c959f;
+      --accent: #1565c0;
+      --card: #f5f6f8;
+      --border: #e1e4e8;
+      --badge-bg: #e3f0fb;
+      --badge-text: #1565c0;
+      --dot: #cfd4da;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -17,14 +57,15 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0a0a0a;
-      color: #e8e8e8;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       font-size: 15px;
+      transition: background 0.25s ease, color 0.25s ease;
     }
 
     a {
-      color: #64b5f6;
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -32,23 +73,48 @@
       text-decoration: underline;
     }
 
-    nav {
+    .topbar {
       max-width: 900px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
       display: flex;
-      gap: 3rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
       font-size: 0.95rem;
-      border-bottom: 1px solid #333;
     }
 
     nav a {
-      color: #999;
+      color: var(--dim);
       transition: color 0.2s;
     }
 
     nav a:hover, nav a.active {
-      color: #e8e8e8;
+      color: var(--heading);
+      text-decoration: none;
+    }
+
+    .theme-toggle {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .page {
@@ -69,64 +135,85 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
+      align-items: start;
     }
 
     h1 {
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 1.5rem;
-      color: #fff;
+      color: var(--heading);
     }
 
     h2 {
       font-size: 1.1rem;
       font-weight: 600;
       margin: 2rem 0 1.5rem 0;
-      color: #fff;
+      color: var(--heading);
     }
 
     h3 {
       font-size: 0.95rem;
       font-weight: 600;
-      color: #fff;
+      color: var(--heading);
     }
 
     p {
       margin-bottom: 1rem;
-      color: #b8b8b8;
+      color: var(--muted);
       line-height: 1.8;
     }
 
     .intro-text {
-      color: #999;
+      color: var(--dim);
       margin-bottom: 2rem;
       font-size: 0.95rem;
       line-height: 1.8;
+      text-align: center;
     }
 
-    .bio {
-      background: #111;
-      padding: 1.5rem;
-      border-left: 2px solid #64b5f6;
-      margin-bottom: 2rem;
-      border-radius: 2px;
-    }
-
-    .bio-item {
-      color: #b8b8b8;
-      margin: 0.5rem 0;
+    .bio-line {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--muted);
       font-size: 0.9rem;
+      line-height: 2;
     }
 
     .bio-label {
-      color: #64b5f6;
+      color: var(--accent);
       font-weight: 600;
     }
 
-    .status {
-      color: #64b5f6;
-      font-size: 0.85rem;
-      margin-bottom: 2rem;
+    .dot {
+      margin: 0 1rem;
+      color: var(--dot);
+    }
+
+    .resume-cta {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .resume-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--border);
+      padding: 0.55rem 1.3rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .resume-button:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+      transform: translateY(-1px);
     }
 
     .experience-item {
@@ -135,14 +222,32 @@
 
     .experience-date {
       font-size: 0.8rem;
-      color: #666;
+      color: var(--faint);
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-org {
+      color: var(--dim);
+      font-size: 0.9rem;
       margin-bottom: 0.5rem;
     }
 
     .experience-desc {
-      color: #b8b8b8;
+      color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.8;
+    }
+
+    .skill-group {
+      margin-bottom: 1rem;
+    }
+
+    .skill-label {
+      color: var(--dim);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
     }
 
     .project {
@@ -151,14 +256,14 @@
 
     .project-title {
       font-weight: 600;
-      color: #fff;
+      color: var(--heading);
       margin-bottom: 0.3rem;
       font-size: 0.95rem;
     }
 
     .project-meta {
       font-size: 0.75rem;
-      color: #666;
+      color: var(--faint);
       margin-bottom: 0.5rem;
     }
 
@@ -166,17 +271,10 @@
       margin-right: 1rem;
     }
 
-    .project-tech {
-      color: #666;
-      font-size: 0.75rem;
-      margin-bottom: 0.5rem;
-      word-spacing: 0.5rem;
-    }
-
     .tech-badge {
       display: inline-block;
-      background: #1a3a4a;
-      color: #64b5f6;
+      background: var(--badge-bg);
+      color: var(--badge-text);
       padding: 0.25rem 0.6rem;
       border-radius: 3px;
       font-size: 0.7rem;
@@ -185,15 +283,87 @@
     }
 
     .project-desc {
-      color: #b8b8b8;
+      color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.8;
+      margin-top: 0.5rem;
+    }
+
+    /* Books gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .book-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .book-card img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .book-card img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .book-title {
+      color: var(--heading);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .book-author {
+      color: var(--dim);
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Philosophy / Substack */
+    .substack-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .substack-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--border);
+      padding: 0.7rem 1.6rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .substack-button:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+      transform: translateY(-1px);
     }
 
     .social-links {
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #333;
+      border-top: 1px solid var(--border);
       display: flex;
       justify-content: center;
       gap: 3rem;
@@ -204,17 +374,18 @@
       display: flex;
       align-items: center;
       gap: 0.8rem;
-      color: #e8e8e8;
+      color: var(--text);
       text-decoration: none;
       font-size: 0.95rem;
       transition: all 0.2s;
-      border-bottom: 1px solid #666;
+      border-bottom: 1px solid var(--faint);
       padding-bottom: 0.2rem;
     }
 
     .social-link:hover {
-      color: #64b5f6;
-      border-bottom-color: #64b5f6;
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      text-decoration: none;
     }
 
     .social-icon {
@@ -227,7 +398,7 @@
 
     .updated {
       font-size: 0.8rem;
-      color: #666;
+      color: var(--faint);
       margin-top: 2rem;
       text-align: center;
     }
@@ -238,8 +409,21 @@
         gap: 2rem;
       }
 
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       nav {
-        gap: 1.5rem;
+        gap: 1.25rem;
+      }
+
+      .topbar {
+        flex-wrap: wrap;
+        gap: 1rem;
       }
 
       h1 {
@@ -260,81 +444,112 @@
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-link active" data-page="home">home</a>
-  <a href="#" class="nav-link" data-page="books">books</a>
-  <a href="#" class="nav-link" data-page="philosophy">philosophy</a>
-</nav>
+<div class="topbar">
+  <nav>
+    <a href="index.html" class="nav-link active" data-page="home">home</a>
+    <a href="#" class="nav-link" data-page="books">books</a>
+    <a href="#" class="nav-link" data-page="philosophy">philosophy</a>
+    <a href="assets/hiruyres.pdf" target="_blank" rel="noopener">resume</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"></button>
+</div>
 
 <!-- HOME PAGE -->
 <div id="home" class="page active">
   <div class="container">
-    <h1 style="text-align: center; margin-bottom: 1.5rem;">Hi, I'm Hiruy 👨‍💻</h1>
+    <h1 style="text-align: center;">Hi, I'm Hiruy</h1>
 
-    <div style="text-align: center; margin-bottom: 2.5rem; color: #b8b8b8; font-size: 0.9rem; line-height: 2;">
-      <span><span class="bio-label">Degree:</span> B.S. Computer Science — University of St. Thomas</span>
-      <span style="margin: 0 1rem; color: #444;">·</span>
-      <span><span class="bio-label">Graduating:</span> May 2027</span>
-      <span style="margin: 0 1rem; color: #444;">·</span>
-      <span><span class="bio-label">GPA:</span> 3.6, Dean's List</span>
-      <span style="margin: 0 1rem; color: #444;">·</span>
-      <span><span class="bio-label">Location:</span> Saint Paul, MN</span>
+    <div class="bio-line">
+      <span><span class="bio-label">Degree:</span> B.S. Computer Science, University of St. Thomas</span>
+      <span class="dot">·</span>
+      <span><span class="bio-label">Graduating:</span> Dec. 2027</span>
+      <span class="dot">·</span>
+      <span><span class="bio-label">GPA:</span> 3.65, Dean's List</span>
+      <span class="dot">·</span>
+      <span><span class="bio-label">Location:</span> Minneapolis &amp; St. Paul, MN</span>
     </div>
-    
+
+    <div class="resume-cta">
+      <a href="assets/hiruyres.pdf" target="_blank" rel="noopener" class="resume-button">
+        <span>↓</span><span>Download Resume</span>
+      </a>
+    </div>
+
     <div class="two-column">
       <div>
-        <h2 style="margin-top: 0;">Experience</h2>
-        
+        <h2 style="margin-top: 0;">Experience &amp; Leadership</h2>
+
         <div class="experience-item">
-          <div class="experience-date">Mar. 2026 – Present</div>
-          <h3>Technical Support Specialist</h3>
-          <p style="color: #999; font-size: 0.9rem; margin-bottom: 0.5rem;">University of St. Thomas, ITS Desktop Services & Support</p>
-          <div class="experience-desc">Diagnose and resolve hardware, software, and network incidents for 9,000+ students and staff across Windows and Mac environments, tracking all requests via TeamDynamix. Image, deploy, and configure campus computers and printers following standardized ITS procedures. Analyze ticket volume and resolution data to identify recurring issues and surface patterns that inform documentation improvements and reduce repeat incident rates.</div>
+          <div class="experience-date">Mar. 2026 - Present</div>
+          <h3>Technical Support</h3>
+          <div class="experience-org">University of St. Thomas, ITS Desktop Services &amp; Support</div>
+          <div class="experience-desc">Resolve 15 to 20 hardware, software, and network incidents per week for 9,000+ users across Windows, Mac, and Linux environments, tracking all requests in TeamDynamix. Perform full-time summer deployment of 30+ new workstations per week, handling OS install, software configuration, and domain join across a multi-campus environment. Manage IT asset tracking by cleaning inventory data and logging device assignments.</div>
         </div>
 
         <div class="experience-item">
-          <div class="experience-date">Jan – May 2025</div>
-          <h3>IT Help Desk Assistant</h3>
-          <p style="color: #999; font-size: 0.9rem; margin-bottom: 0.5rem;">St. Olaf College</p>
-          <div class="experience-desc">Maintained a 90%+ same-day resolution rate across 50+ weekly tickets by diagnosing hardware, software, and network issues for 3,000+ students and staff via TeamDynamix. Reduced repeat tickets by writing technical documentation that standardized debugging procedures for recurring issues. Improved support consistency by triaging and routing tickets with full SLA compliance and accurate cross-team tracking.</div>
+          <div class="experience-date">Jan. 2025 - May 2025</div>
+          <h3>IT Help Desk</h3>
+          <div class="experience-org">St. Olaf College, Northfield, MN</div>
+          <div class="experience-desc">Resolved 50+ tickets per week for 3,000+ users with a 90%+ same-day resolution rate by diagnosing hardware, software, and account issues across Windows and Mac environments.</div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-date">Fall 2026</div>
+          <h3>AI Dark Patterns Research</h3>
+          <div class="experience-org">University of St. Thomas, Faculty-Sponsored</div>
+          <div class="experience-desc">Conducting faculty-sponsored research on AI dark patterns and digital addiction; designing survey instruments and analyzing manipulative design patterns in consumer AI products.</div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-date">Nov. 2024 - Present</div>
+          <h3>ColorStack, Member</h3>
+          <div class="experience-desc">Engage with a national CS community of 10,000+ members focused on career development and technical growth for underrepresented students in tech.</div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-date">Sep. 2024 - May 2025</div>
+          <h3>Club Soccer, Second Captain</h3>
+          <div class="experience-desc">Led a 20+ person roster, coordinating 2 weekly practices and mentoring teammates to improve team retention.</div>
         </div>
 
         <h2>Skills</h2>
-        <div style="margin-bottom: 1rem;">
-          <p style="color: #999; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Languages</p>
+        <div class="skill-group">
+          <p class="skill-label">Languages</p>
           <span class="tech-badge">Python</span>
           <span class="tech-badge">JavaScript</span>
           <span class="tech-badge">SQL</span>
           <span class="tech-badge">Java</span>
+          <span class="tech-badge">C++</span>
+          <span class="tech-badge">Bash</span>
         </div>
-        <div style="margin-bottom: 1rem;">
-          <p style="color: #999; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Frameworks & Libraries</p>
+        <div class="skill-group">
+          <p class="skill-label">Frameworks &amp; Libraries</p>
           <span class="tech-badge">React</span>
           <span class="tech-badge">Flask</span>
+          <span class="tech-badge">Node.js</span>
           <span class="tech-badge">Pandas</span>
-          <span class="tech-badge">sentence-transformers</span>
           <span class="tech-badge">BeautifulSoup</span>
+          <span class="tech-badge">pytest</span>
         </div>
-        <div style="margin-bottom: 1rem;">
-          <p style="color: #999; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Tools & Platforms</p>
+        <div class="skill-group">
+          <p class="skill-label">DevOps &amp; Cloud</p>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">GitHub Actions</span>
+          <span class="tech-badge">AWS EC2</span>
+          <span class="tech-badge">AWS VPC</span>
+          <span class="tech-badge">AWS IAM</span>
+          <span class="tech-badge">CloudWatch</span>
+          <span class="tech-badge">S3</span>
+          <span class="tech-badge">Linux</span>
+          <span class="tech-badge">Nginx</span>
+        </div>
+        <div class="skill-group">
+          <p class="skill-label">Tools</p>
           <span class="tech-badge">Git</span>
-          <span class="tech-badge">Claude AI</span>
-          <span class="tech-badge">GitHub Copilot</span>
-          <span class="tech-badge">Netlify</span>
-          <span class="tech-badge">Render</span>
+          <span class="tech-badge">GitHub</span>
           <span class="tech-badge">VS Code</span>
           <span class="tech-badge">Draw.io</span>
           <span class="tech-badge">TeamDynamix</span>
-        </div>
-        <div>
-          <p style="color: #999; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Areas</p>
-          <span class="tech-badge">ETL Pipelines</span>
-          <span class="tech-badge">NLP</span>
-          <span class="tech-badge">Semantic Search</span>
-          <span class="tech-badge">AI Integration</span>
-          <span class="tech-badge">REST API</span>
-          <span class="tech-badge">System Design</span>
-          <span class="tech-badge">Data Analysis</span>
         </div>
       </div>
 
@@ -342,40 +557,41 @@
         <h2 style="margin-top: 0;">Projects</h2>
 
         <div class="project">
-          <div class="project-title">Ask the Church Fathers</div>
-          <div class="project-meta"><a href="https://github.com/hiruykassa">github</a></div>
+          <div class="project-title">Ask the Early Church</div>
+          <div class="project-meta"><a href="https://github.com/hiruykassa/ask-the-early-church" target="_blank" rel="noopener">github</a></div>
           <div>
             <span class="tech-badge">React</span>
             <span class="tech-badge">Flask</span>
+            <span class="tech-badge">Python</span>
             <span class="tech-badge">SQLite</span>
-            <span class="tech-badge">Claude API</span>
-            <span class="tech-badge">NLP</span>
+            <span class="tech-badge">Voyage AI</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">AWS</span>
           </div>
-          <div class="project-desc">Full-stack semantic search engine over the complete early Church Fathers corpus. 3-tier system with hybrid BM25 + vector search (384-dim embeddings) merged via Reciprocal Rank Fusion. ETL pipeline scraping, cleaning, and embedding public-domain texts. Claude API for AI-synthesized theological answers with citations. Deployed on Netlify + Render.</div>
+          <div class="project-desc">Serves 1,000+ daily active users via a hybrid search engine over 52,000+ passages (247 authors, 2,858 works), fusing Voyage AI vector embeddings with FTS5 keyword search via reciprocal rank fusion and per-work/author diversification. Cut median search latency roughly 40% by parallelizing Voyage AI embedding with Gemini query parsing in a worker thread and caching repeat queries, keeping the corpus in RAM via a float16 loader. Built on a 5-stage ETL pipeline (scrape, clean, chunk, embed, index) and a React + Vite frontend on a Flask REST API, containerized with Docker on AWS EC2 with CI/CD via GitHub Actions, CloudWatch monitoring, and a 2,997-URL SEO sitemap.</div>
         </div>
 
         <div class="project">
-          <div class="project-title">FZ Contracting — AI Workflow System</div>
-          <div class="project-meta"><a href="https://github.com/hiruykassa">github</a></div>
+          <div class="project-title">FZ Contracting: AI Workflow System Design</div>
+          <div class="project-meta"><a href="https://github.com/hiruykassa" target="_blank" rel="noopener">github</a></div>
           <div>
             <span class="tech-badge">Claude AI</span>
             <span class="tech-badge">Draw.io</span>
             <span class="tech-badge">System Design</span>
-            <span class="tech-badge">MCP</span>
           </div>
-          <div class="project-desc">Designed a 6-stage agentic AI workflow for a real contracting business — Lead → Scheduling → RFP → Proposal → Trade Sequencing → Job Scheduling. Authored a 22-requirement PRD adopted by the senior engineer. Mapped API integrations with Google Calendar, Maps, and Twilio.</div>
+          <div class="project-desc">Designed a 6-stage agentic AI workflow automating 5 manual business processes for a real contracting business. Authored a 22-requirement PRD with 4 architecture diagrams mapping API integrations with Google Calendar, Maps, and Twilio SMS.</div>
         </div>
 
         <div class="project">
-          <div class="project-title">E-Commerce Funnel & RFM Analysis</div>
-          <div class="project-meta"><a href="https://github.com/hiruykassa/Ecommerce-Funnel-Analysis">github</a></div>
+          <div class="project-title">E-Commerce Funnel &amp; RFM Analysis</div>
+          <div class="project-meta"><a href="https://github.com/hiruykassa/Ecommerce-Funnel-Analysis" target="_blank" rel="noopener">github</a></div>
           <div>
             <span class="tech-badge">Python</span>
             <span class="tech-badge">Pandas</span>
             <span class="tech-badge">Claude AI</span>
             <span class="tech-badge">GitHub Copilot</span>
           </div>
-          <div class="project-desc">4-stage data pipeline on 541,909 transactions surfacing a 34.6% first-purchase drop-off, 51.8% revenue concentration in top 10% of customers, and 1,541 at-risk customers as a win-back opportunity via RFM segmentation.</div>
+          <div class="project-desc">4-stage data pipeline on 541,909 transactions surfacing a 34.6% first-purchase drop-off, 51.8% revenue concentration in the top 10% of customers, and 1,541 at-risk customers as a win-back opportunity via RFM segmentation.</div>
         </div>
       </div>
     </div>
@@ -385,87 +601,123 @@
         <span class="social-icon">✉</span>
         <span>hiruygirmak@gmail.com</span>
       </a>
-      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" class="social-link">
+      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" target="_blank" rel="noopener" class="social-link">
         <span class="social-icon">in</span>
         <span>linkedin.com/in/hiruykassa</span>
       </a>
-      <a href="https://github.com/hiruykassa" class="social-link">
+      <a href="https://github.com/hiruykassa" target="_blank" rel="noopener" class="social-link">
         <span class="social-icon">⚙</span>
         <span>github.com/hiruykassa</span>
       </a>
     </div>
 
-    <p class="updated">updated 04/07/2026</p>
+    <p class="updated">updated 06/14/2026</p>
   </div>
 </div>
 
 <!-- BOOKS PAGE -->
 <div id="books" class="page">
   <div class="container">
-    <h1>Books 📚</h1>
-    <p class="intro-text">Soon to be added</p>
+    <h1 style="text-align: center;">Books 📚</h1>
+    <p class="intro-text">A few of the books I've been reading lately.</p>
+
+    <div class="gallery">
+      <div class="book-card">
+        <img src="assets/IMG_9332.JPG" alt="Confessions by Saint Augustine" loading="lazy"/>
+        <div class="book-title">Confessions</div>
+        <div class="book-author">Saint Augustine</div>
+      </div>
+      <div class="book-card">
+        <img src="assets/IMG_0325.JPG" alt="The Brothers Karamazov by Fyodor Dostoevsky" loading="lazy"/>
+        <div class="book-title">The Brothers Karamazov</div>
+        <div class="book-author">Fyodor Dostoevsky</div>
+      </div>
+      <div class="book-card">
+        <img src="assets/IMG_0035.JPG" alt="I Need Answers by Deacon Dawit Muluneh" loading="lazy"/>
+        <div class="book-title">I Need Answers</div>
+        <div class="book-author">Deacon Dawit Muluneh</div>
+      </div>
+    </div>
 
     <div class="social-links">
       <a href="mailto:hiruygirmak@gmail.com" class="social-link">
         <span class="social-icon">✉</span>
         <span>hiruygirmak@gmail.com</span>
       </a>
-      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" class="social-link">
+      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" target="_blank" rel="noopener" class="social-link">
         <span class="social-icon">in</span>
         <span>linkedin.com/in/hiruykassa</span>
       </a>
-      <a href="https://github.com/hiruykassa" class="social-link">
+      <a href="https://github.com/hiruykassa" target="_blank" rel="noopener" class="social-link">
         <span class="social-icon">⚙</span>
         <span>github.com/hiruykassa</span>
       </a>
     </div>
 
-    <p class="updated">updated 04/07/2026</p>
+    <p class="updated">updated 06/14/2026</p>
   </div>
 </div>
 
 <!-- PHILOSOPHY PAGE -->
 <div id="philosophy" class="page">
   <div class="container">
-    <h1>Philosophy & Theology ☦</h1>
-    <p class="intro-text">Soon to be added</p>
+    <h1 style="text-align: center;">Philosophy &amp; Theology ☦</h1>
+    <p class="intro-text">Essays and reflections on philosophy, theology, and the questions worth wrestling with. Read along on Substack.</p>
+
+    <div class="substack-cta">
+      <a href="https://substack.com/@snowcreatez/posts" target="_blank" rel="noopener" class="substack-button">
+        <span>📜</span><span>Read on Substack</span>
+      </a>
+    </div>
 
     <div class="social-links">
       <a href="mailto:hiruygirmak@gmail.com" class="social-link">
         <span class="social-icon">✉</span>
         <span>hiruygirmak@gmail.com</span>
       </a>
-      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" class="social-link">
+      <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" target="_blank" rel="noopener" class="social-link">
         <span class="social-icon">in</span>
         <span>linkedin.com/in/hiruykassa</span>
       </a>
-      <a href="https://github.com/hiruykassa" class="social-link">
+      <a href="https://github.com/hiruykassa" target="_blank" rel="noopener" class="social-link">
         <span class="social-icon">⚙</span>
         <span>github.com/hiruykassa</span>
       </a>
     </div>
 
-    <p class="updated">updated 04/07/2026</p>
+    <p class="updated">updated 06/14/2026</p>
   </div>
 </div>
 
 <script>
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
+  var toggle = document.getElementById('themeToggle');
+
+  function setToggleLabel() {
+    var current = document.documentElement.getAttribute('data-theme');
+    toggle.textContent = current === 'dark' ? '☀ light' : '☾ dark';
+  }
+
+  setToggleLabel();
+
+  toggle.addEventListener('click', function () {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    setToggleLabel();
+  });
+
+  document.querySelectorAll('.nav-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
       e.preventDefault();
-      const page = link.dataset.page;
-      
-      // Hide all pages
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      
-      // Show selected page
+      var page = link.dataset.page;
+
+      document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
       document.getElementById(page).classList.add('active');
-      
-      // Update nav
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+      document.querySelectorAll('.nav-link').forEach(function (l) { l.classList.remove('active'); });
       link.classList.add('active');
-      
-      // Scroll to top
+
       window.scrollTo(0, 0);
     });
   });
