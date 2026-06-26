@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hiruy Kassa</title>
+  <title>Hiruy Kassa | Software Engineer</title>
+  <meta name="description" content="Hiruy Kassa, Computer Science student at the University of St. Thomas building full-stack and AI-powered software. Portfolio, projects, and resume."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
   <script>
     (function () {
       try {
@@ -16,33 +20,43 @@
   </script>
   <style>
     :root[data-theme="dark"] {
-      --bg: #0a0a0a;
-      --text: #e8e8e8;
-      --heading: #ffffff;
-      --muted: #b8b8b8;
-      --dim: #999999;
-      --faint: #666666;
-      --accent: #64b5f6;
-      --card: #111111;
-      --border: #333333;
-      --badge-bg: #1a3a4a;
-      --badge-text: #64b5f6;
-      --dot: #444444;
+      --bg: #0b0c0e;
+      --bg-soft: #0f1114;
+      --text: #d7dade;
+      --heading: #f5f6f7;
+      --muted: #aab0b8;
+      --dim: #868d96;
+      --faint: #5e656e;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.14);
+      --card: #121418;
+      --card-hover: #171a1f;
+      --border: #23262c;
+      --border-strong: #2e3239;
+      --badge-bg: #16202e;
+      --badge-text: #93c5fd;
+      --dot: #3a3f47;
+      --shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
     }
 
     :root[data-theme="light"] {
-      --bg: #ffffff;
-      --text: #1f2328;
+      --bg: #fbfbfc;
+      --bg-soft: #f4f5f7;
+      --text: #2b313a;
       --heading: #0d1117;
-      --muted: #424a53;
-      --dim: #57606a;
-      --faint: #8c959f;
-      --accent: #1565c0;
-      --card: #f5f6f8;
-      --border: #e1e4e8;
-      --badge-bg: #e3f0fb;
-      --badge-text: #1565c0;
-      --dot: #cfd4da;
+      --muted: #475569;
+      --dim: #5b6573;
+      --faint: #8b94a1;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.10);
+      --card: #ffffff;
+      --card-hover: #ffffff;
+      --border: #e6e8ec;
+      --border-strong: #d4d8de;
+      --badge-bg: #eaf1fd;
+      --badge-text: #1d4ed8;
+      --dot: #cdd2da;
+      --shadow: 0 14px 40px rgba(15, 23, 42, 0.10);
     }
 
     * {
@@ -56,12 +70,13 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       font-size: 15px;
-      transition: background 0.25s ease, color 0.25s ease;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     a {
@@ -73,31 +88,77 @@
       text-decoration: underline;
     }
 
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ---------- Top bar ---------- */
     .topbar {
-      max-width: 900px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 980px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
-      border-bottom: 1px solid var(--border);
     }
+
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--heading);
+      letter-spacing: -0.01em;
+    }
+    .brand:hover { text-decoration: none; }
+    .brand .brand-dot { color: var(--accent); }
 
     nav {
       display: flex;
-      gap: 2.5rem;
-      font-size: 0.95rem;
+      align-items: center;
+      gap: 2rem;
+      font-size: 0.9rem;
     }
 
-    nav a {
+    nav a.nav-link {
       color: var(--dim);
       transition: color 0.2s;
+      position: relative;
+      padding-bottom: 2px;
     }
 
-    nav a:hover, nav a.active {
+    nav a.nav-link:hover, nav a.nav-link.active {
       color: var(--heading);
       text-decoration: none;
+    }
+
+    nav a.nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .theme-toggle {
@@ -105,520 +166,612 @@
       border: 1px solid var(--border);
       color: var(--text);
       border-radius: 999px;
-      padding: 0.4rem 0.9rem;
-      font-size: 0.85rem;
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: all 0.2s ease;
-      white-space: nowrap;
     }
 
     .theme-toggle:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
+    .theme-toggle svg { width: 18px; height: 18px; }
 
-    .page {
-      display: none;
-    }
-
+    /* ---------- Pages ---------- */
+    .page { display: none; }
     .page.active {
       display: block;
+      animation: fade-in 0.4s ease both;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .container {
-      max-width: 900px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
+      padding: 3.5rem 1.5rem 4rem;
     }
 
-    .two-column {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
+    /* ---------- Hero ---------- */
+    .hero { text-align: center; margin-bottom: 3.5rem; }
 
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: var(--heading);
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin: 2rem 0 1.5rem 0;
-      color: var(--heading);
-    }
-
-    h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--heading);
-    }
-
-    p {
-      margin-bottom: 1rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .intro-text {
-      color: var(--dim);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-      line-height: 1.8;
-      text-align: center;
-    }
-
-    .bio-line {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 2;
-    }
-
-    .bio-label {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .dot {
-      margin: 0 1rem;
-      color: var(--dot);
-    }
-
-    .resume-cta {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .resume-button {
+    .availability {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--badge-bg);
-      color: var(--badge-text);
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: var(--card);
       border: 1px solid var(--border);
-      padding: 0.55rem 1.3rem;
-      border-radius: 6px;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+      70% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      color: var(--heading);
+    }
+    h1 .accent { color: var(--accent); }
+
+    .role {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 1.6rem;
+    }
+
+    .bio-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem 0;
+      margin-bottom: 1.8rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .bio-line > span:not(.dot) {
+      display: inline-flex;
+      gap: 0.35rem;
+    }
+    .bio-label { color: var(--dim); }
+    .bio-line strong { color: var(--heading); font-weight: 600; }
+    .dot { margin: 0 0.85rem; color: var(--dot); }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.3rem;
+      border-radius: 8px;
       font-size: 0.9rem;
       font-weight: 600;
+      cursor: pointer;
       transition: all 0.2s ease;
+      border: 1px solid transparent;
     }
-
-    .resume-button:hover {
-      border-color: var(--accent);
+    .btn svg { width: 16px; height: 16px; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
       text-decoration: none;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      filter: brightness(1.07);
+      box-shadow: 0 8px 22px var(--accent-soft);
+    }
+    .btn-ghost {
+      background: var(--card);
+      color: var(--heading);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover {
+      text-decoration: none;
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
     }
 
-    .experience-item {
-      margin-bottom: 3rem;
+    /* ---------- Layout ---------- */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
     }
 
-    .experience-date {
-      font-size: 0.8rem;
-      color: var(--faint);
-      margin-bottom: 0.5rem;
-    }
-
-    .experience-org {
-      color: var(--dim);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .experience-desc {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.8;
-    }
-
-    .skill-group {
-      margin-bottom: 1rem;
-    }
-
-    .skill-label {
-      color: var(--dim);
-      font-size: 0.8rem;
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
     }
+    .col-stack > .section-title:not(:first-child) { margin-top: 3rem; }
 
-    .project {
-      margin-bottom: 3rem;
-    }
-
-    .project-title {
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.98rem;
       font-weight: 600;
       color: var(--heading);
+    }
+
+    p { color: var(--muted); line-height: 1.75; }
+
+    /* ---------- Experience ---------- */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.3rem 1.4rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      border-color: var(--border-strong);
+      background: var(--card-hover);
+    }
+
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
       margin-bottom: 0.3rem;
-      font-size: 0.95rem;
     }
-
-    .project-meta {
-      font-size: 0.75rem;
+    .experience-date {
+      font-size: 0.72rem;
       color: var(--faint);
-      margin-bottom: 0.5rem;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .experience-org {
+      color: var(--accent);
+      font-size: 0.82rem;
+      margin-bottom: 0.6rem;
+    }
+    .experience-desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
     }
 
-    .project-meta a {
-      margin-right: 1rem;
+    /* ---------- Skills ---------- */
+    .skill-group { margin-bottom: 1.2rem; }
+    .skill-label {
+      color: var(--dim);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.55rem;
     }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     .tech-badge {
       display: inline-block;
       background: var(--badge-bg);
       color: var(--badge-text);
-      padding: 0.25rem 0.6rem;
-      border-radius: 3px;
-      font-size: 0.7rem;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 500;
     }
 
+    /* ---------- Projects ---------- */
+    a.project { display: block; }
+    a.project:hover { text-decoration: none; }
+    a.project:hover .card {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+    .project-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.7rem;
+    }
+    .project-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      color: var(--heading);
+      font-size: 1rem;
+    }
+    .project-arrow {
+      color: var(--faint);
+      transition: transform 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+    a.project:hover .project-arrow {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+    .project-arrow svg { width: 16px; height: 16px; display: block; }
     .project-desc {
       color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.8;
-      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin-top: 0.7rem;
     }
+    .project .badge-row { margin-top: 0.2rem; }
 
-    /* Books gallery */
+    /* ---------- Books ---------- */
+    .intro-text {
+      color: var(--muted);
+      margin: 0 auto 1rem;
+      max-width: 520px;
+      font-size: 0.95rem;
+      text-align: center;
+    }
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      margin-top: 2.5rem;
+      margin-top: 3rem;
     }
-
     .book-card {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
-
     .book-card img {
       width: 100%;
       aspect-ratio: 3 / 4;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid var(--border);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-
-    .book-card img:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    .book-card:hover img {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
     }
-
     .book-title {
+      font-family: 'Space Grotesk', sans-serif;
       color: var(--heading);
       font-weight: 600;
       font-size: 0.9rem;
       margin-top: 1rem;
     }
+    .book-author { color: var(--dim); font-size: 0.8rem; margin-top: 0.2rem; }
 
-    .book-author {
-      color: var(--dim);
-      font-size: 0.8rem;
-      margin-top: 0.25rem;
-    }
-
-    /* Philosophy / Substack */
+    /* ---------- Substack ---------- */
     .substack-cta {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-    }
-
-    .substack-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--badge-bg);
-      color: var(--badge-text);
-      border: 1px solid var(--border);
-      padding: 0.7rem 1.6rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .substack-button:hover {
-      border-color: var(--accent);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
-
-    .social-links {
+      justify-content: center;
       margin-top: 3rem;
+    }
+
+    /* ---------- Footer / socials ---------- */
+    .social-links {
+      margin-top: 4rem;
       padding-top: 2rem;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: center;
-      gap: 3rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
-
     .social-link {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 0.8rem;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      border-bottom: 1px solid var(--faint);
-      padding-bottom: 0.2rem;
+      gap: 0.55rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0.55rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      transition: all 0.2s ease;
     }
-
     .social-link:hover {
       color: var(--accent);
-      border-bottom-color: var(--accent);
+      border-color: var(--accent);
       text-decoration: none;
+      transform: translateY(-2px);
     }
-
-    .social-icon {
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-    }
+    .social-link svg { width: 17px; height: 17px; }
 
     .updated {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--faint);
       margin-top: 2rem;
       text-align: center;
     }
 
-    @media (max-width: 900px) {
-      .two-column {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
+    @media (max-width: 820px) {
+      .two-column { grid-template-columns: 1fr; gap: 0; }
+      .col-stack > .section-title:first-of-type { margin-top: 2.5rem; }
       .gallery {
         grid-template-columns: 1fr;
         gap: 2.5rem;
-        max-width: 360px;
+        max-width: 320px;
         margin-left: auto;
         margin-right: auto;
       }
+      nav { gap: 1.25rem; }
+      h1 { font-size: 2rem; }
+      .role { font-size: 0.98rem; }
+      .container { padding-top: 2.5rem; }
+    }
 
-      nav {
-        gap: 1.25rem;
-      }
+    @media (max-width: 480px) {
+      .brand { display: none; }
+      nav { gap: 1rem; font-size: 0.85rem; }
+      .social-links { flex-direction: column; align-items: stretch; }
+      .social-link { justify-content: center; }
+    }
 
-      .topbar {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      .social-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .social-link {
-        width: fit-content;
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
 <body>
 
-<div class="topbar">
-  <nav>
-    <a href="index.html" class="nav-link active" data-page="home">home</a>
-    <a href="#" class="nav-link" data-page="books">books</a>
-    <a href="#" class="nav-link" data-page="philosophy">philosophy</a>
-    <a href="assets/hiruyres.pdf" target="_blank" rel="noopener">resume</a>
-  </nav>
-  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"></button>
-</div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="brand nav-link" data-page="home">Hiruy Kassa<span class="brand-dot">.</span></a>
+    <nav>
+      <a href="#" class="nav-link active" data-page="home">Home</a>
+      <a href="#" class="nav-link" data-page="books">Books</a>
+      <a href="#" class="nav-link" data-page="philosophy">Writing</a>
+      <a href="assets/hiruyres.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"></button>
+    </div>
+  </div>
+</header>
 
 <!-- HOME PAGE -->
 <div id="home" class="page active">
   <div class="container">
-    <h1 style="text-align: center;">Hi, I'm Hiruy</h1>
+    <section class="hero">
+      <span class="availability"><span class="pulse"></span>Open to Summer 2027 internships</span>
+      <h1>Hi, I'm <span class="accent">Hiruy</span></h1>
+      <p class="role">Computer Science student and software engineer building full-stack and AI-powered products, from a hybrid search engine serving thousands of users to grounded RAG systems on AWS.</p>
 
-    <div class="bio-line">
-      <span><span class="bio-label">Degree:</span> B.S. Computer Science, University of St. Thomas</span>
-      <span class="dot">·</span>
-      <span><span class="bio-label">Graduating:</span> Dec. 2027</span>
-      <span class="dot">·</span>
-      <span><span class="bio-label">GPA:</span> 3.65, Dean's List</span>
-      <span class="dot">·</span>
-      <span><span class="bio-label">Location:</span> Minneapolis &amp; St. Paul, MN</span>
-    </div>
+      <div class="bio-line">
+        <span><span class="bio-label">Degree:</span> <strong>B.S. Computer Science</strong></span>
+        <span class="dot">·</span>
+        <span><span class="bio-label">GPA:</span> <strong>3.65, Dean's List</strong></span>
+        <span class="dot">·</span>
+        <span><span class="bio-label">Grad:</span> <strong>Dec. 2027</strong></span>
+        <span class="dot">·</span>
+        <span><span class="bio-label">Location:</span> <strong>Minneapolis-St. Paul, MN</strong></span>
+      </div>
 
-    <div class="resume-cta">
-      <a href="assets/hiruyres.pdf" target="_blank" rel="noopener" class="resume-button">
-        <span>↓</span><span>Download Resume</span>
-      </a>
-    </div>
+      <div class="hero-cta">
+        <a href="assets/hiruyres.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+        <a href="mailto:hiruygirmak@gmail.com" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          Get in Touch
+        </a>
+      </div>
+    </section>
 
     <div class="two-column">
-      <div>
-        <h2 style="margin-top: 0;">Experience &amp; Leadership</h2>
+      <div class="col-stack">
+        <h2 class="section-title">Experience &amp; Leadership</h2>
 
-        <div class="experience-item">
-          <div class="experience-date">Mar. 2026 - Present</div>
-          <h3>Technical Support</h3>
-          <div class="experience-org">University of St. Thomas, ITS Desktop Services &amp; Support</div>
-          <div class="experience-desc">Resolve 15 to 20 hardware, software, and network incidents per week for 9,000+ users across Windows, Mac, and Linux environments, tracking all requests in TeamDynamix. Perform full-time summer deployment of 30+ new workstations per week, handling OS install, software configuration, and domain join across a multi-campus environment. Manage IT asset tracking by cleaning inventory data and logging device assignments.</div>
+        <div class="card">
+          <div class="exp-head">
+            <h3>IT Support &amp; Technician</h3>
+            <div class="experience-date">Jan 2025 - Present</div>
+          </div>
+          <div class="experience-org">University of St. Thomas, Minneapolis &amp; St. Paul, MN</div>
+          <div class="experience-desc">Maintain a 90%+ same-day resolution rate across 50+ tickets per week for 3,000+ users, diagnosing hardware, software, and account issues across Windows and Mac. Support 9,000+ users by resolving 15–20 incidents per week and tracking all requests in TeamDynamix. Scaled device rollout to 30+ new workstations per week during peak summer demand via OS imaging, software configuration, and Active Directory domain joins across a multi-campus environment.</div>
         </div>
 
-        <div class="experience-item">
-          <div class="experience-date">Jan. 2025 - May 2025</div>
-          <h3>IT Help Desk</h3>
-          <div class="experience-org">St. Olaf College, Northfield, MN</div>
-          <div class="experience-desc">Resolved 50+ tickets per week for 3,000+ users with a 90%+ same-day resolution rate by diagnosing hardware, software, and account issues across Windows and Mac environments.</div>
+        <div class="card">
+          <div class="exp-head">
+            <h3>Solutions Architect Intern</h3>
+            <div class="experience-date">Mar 2026 - Jun 2026</div>
+          </div>
+          <div class="experience-org">FZ Contracting, Minneapolis, MN</div>
+          <div class="experience-desc">Automated 5 manual business processes by designing a 6-stage agentic AI workflow, documented in a 22-requirement PRD with 4 architecture diagrams. Mapped third-party API integrations (Google Calendar, Maps, Twilio SMS) and defined the data flow and error-handling strategy for each stage of the system.</div>
         </div>
 
-        <div class="experience-item">
-          <div class="experience-date">Fall 2026</div>
-          <h3>AI Dark Patterns Research</h3>
-          <div class="experience-org">University of St. Thomas, Faculty-Sponsored</div>
-          <div class="experience-desc">Conducting faculty-sponsored research on AI dark patterns and digital addiction; designing survey instruments and analyzing manipulative design patterns in consumer AI products.</div>
+        <div class="card">
+          <div class="exp-head">
+            <h3>AI Dark Patterns &amp; Digital Well-Being Research</h3>
+            <div class="experience-date">Jul 2026 - Present</div>
+          </div>
+          <div class="experience-org">University of St. Thomas, St. Paul, MN</div>
+          <div class="experience-desc">Building a reproducible Python (Pandas) pipeline to clean and analyze summer-2026 survey data on AI-driven engagement, documented for replication by future students. Defining the study's engagement metrics and research questions by reviewing HCI literature on dark patterns and digital addiction.</div>
         </div>
 
-        <div class="experience-item">
-          <div class="experience-date">Nov. 2024 - Present</div>
-          <h3>ColorStack, Member</h3>
+        <div class="card">
+          <div class="exp-head">
+            <h3>ColorStack, Member</h3>
+            <div class="experience-date">Nov 2024 - Present</div>
+          </div>
           <div class="experience-desc">Engage with a national CS community of 10,000+ members focused on career development and technical growth for underrepresented students in tech.</div>
         </div>
 
-        <div class="experience-item">
-          <div class="experience-date">Sep. 2024 - May 2025</div>
-          <h3>Club Soccer, Second Captain</h3>
+        <div class="card">
+          <div class="exp-head">
+            <h3>Club Soccer, Second Captain</h3>
+            <div class="experience-date">Sep 2024 - May 2025</div>
+          </div>
           <div class="experience-desc">Led a 20+ person roster, coordinating 2 weekly practices and mentoring teammates to improve team retention.</div>
         </div>
 
-        <h2>Skills</h2>
+        <h2 class="section-title">Skills</h2>
         <div class="skill-group">
           <p class="skill-label">Languages</p>
-          <span class="tech-badge">Python</span>
-          <span class="tech-badge">JavaScript</span>
-          <span class="tech-badge">SQL</span>
-          <span class="tech-badge">Java</span>
-          <span class="tech-badge">C++</span>
-          <span class="tech-badge">Bash</span>
+          <div class="badge-row">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">SQL</span>
+            <span class="tech-badge">Java</span>
+            <span class="tech-badge">HTML/CSS</span>
+          </div>
         </div>
         <div class="skill-group">
           <p class="skill-label">Frameworks &amp; Libraries</p>
-          <span class="tech-badge">React</span>
-          <span class="tech-badge">Flask</span>
-          <span class="tech-badge">Node.js</span>
-          <span class="tech-badge">Pandas</span>
-          <span class="tech-badge">BeautifulSoup</span>
-          <span class="tech-badge">pytest</span>
+          <div class="badge-row">
+            <span class="tech-badge">React</span>
+            <span class="tech-badge">Flask</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">Pandas</span>
+            <span class="tech-badge">BeautifulSoup</span>
+            <span class="tech-badge">pytest</span>
+          </div>
         </div>
         <div class="skill-group">
-          <p class="skill-label">DevOps &amp; Cloud</p>
-          <span class="tech-badge">Docker</span>
-          <span class="tech-badge">GitHub Actions</span>
-          <span class="tech-badge">AWS EC2</span>
-          <span class="tech-badge">AWS VPC</span>
-          <span class="tech-badge">AWS IAM</span>
-          <span class="tech-badge">CloudWatch</span>
-          <span class="tech-badge">S3</span>
-          <span class="tech-badge">Linux</span>
-          <span class="tech-badge">Nginx</span>
+          <p class="skill-label">AI / ML</p>
+          <div class="badge-row">
+            <span class="tech-badge">RAG</span>
+            <span class="tech-badge">Vector Embeddings</span>
+            <span class="tech-badge">Hybrid Search</span>
+            <span class="tech-badge">LLM Evaluation</span>
+          </div>
         </div>
         <div class="skill-group">
-          <p class="skill-label">Tools</p>
-          <span class="tech-badge">Git</span>
-          <span class="tech-badge">GitHub</span>
-          <span class="tech-badge">VS Code</span>
-          <span class="tech-badge">Draw.io</span>
-          <span class="tech-badge">TeamDynamix</span>
+          <p class="skill-label">Cloud &amp; DevOps</p>
+          <div class="badge-row">
+            <span class="tech-badge">AWS EC2</span>
+            <span class="tech-badge">S3</span>
+            <span class="tech-badge">IAM</span>
+            <span class="tech-badge">Lambda</span>
+            <span class="tech-badge">API Gateway</span>
+            <span class="tech-badge">Bedrock</span>
+            <span class="tech-badge">CloudWatch</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">GitHub Actions</span>
+            <span class="tech-badge">Linux</span>
+            <span class="tech-badge">Nginx</span>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h2 style="margin-top: 0;">Projects</h2>
+      <div class="col-stack">
+        <h2 class="section-title">Featured Projects</h2>
 
-        <div class="project">
-          <div class="project-title">Ask the Early Church</div>
-          <div class="project-meta"><a href="https://github.com/hiruykassa/ask-the-early-church" target="_blank" rel="noopener">github</a></div>
-          <div>
-            <span class="tech-badge">React</span>
-            <span class="tech-badge">Flask</span>
-            <span class="tech-badge">Python</span>
-            <span class="tech-badge">SQLite</span>
-            <span class="tech-badge">Voyage AI</span>
-            <span class="tech-badge">Docker</span>
-            <span class="tech-badge">AWS</span>
+        <a class="project" href="https://github.com/hiruykassa/ask-the-early-church" target="_blank" rel="noopener">
+          <div class="card">
+            <div class="project-title-row">
+              <span class="project-title">Ask the Early Church</span>
+              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+            </div>
+            <div class="badge-row">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Flask</span>
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">SQLite/FTS5</span>
+              <span class="tech-badge">Voyage AI</span>
+              <span class="tech-badge">Docker</span>
+              <span class="tech-badge">AWS</span>
+            </div>
+            <div class="project-desc">Serves 3,000+ monthly users searching 52,000+ passages (247 authors, 2,858 works) via a hybrid search engine that fuses vector embeddings, FTS5 BM25 keyword search, and title matching with reciprocal rank fusion. Engineered graceful degradation across the LLM stack (Gemini → Groq → local; vector → keyword fallback) with a monthly budget guard to eliminate user-facing API failures. Cut memory ~3× with a custom float16 embedding loader (~108 MB) holding the full corpus in RAM. Deployed on AWS EC2 via docker-compose (Nginx, gunicorn/Flask, Redis) with GitHub Actions CI/CD, CloudWatch alarms, rate limiting, and CSP/CORS.</div>
           </div>
-          <div class="project-desc">Serves 1,000+ daily active users via a hybrid search engine over 52,000+ passages (247 authors, 2,858 works), fusing Voyage AI vector embeddings with FTS5 keyword search via reciprocal rank fusion and per-work/author diversification. Cut median search latency roughly 40% by parallelizing Voyage AI embedding with Gemini query parsing in a worker thread and caching repeat queries, keeping the corpus in RAM via a float16 loader. Built on a 5-stage ETL pipeline (scrape, clean, chunk, embed, index) and a React + Vite frontend on a Flask REST API, containerized with Docker on AWS EC2 with CI/CD via GitHub Actions, CloudWatch monitoring, and a 2,997-URL SEO sitemap.</div>
-        </div>
+        </a>
 
-        <div class="project">
-          <div class="project-title">FZ Contracting: AI Workflow System Design</div>
-          <div class="project-meta"><a href="https://github.com/hiruykassa" target="_blank" rel="noopener">github</a></div>
-          <div>
-            <span class="tech-badge">Claude AI</span>
-            <span class="tech-badge">Draw.io</span>
-            <span class="tech-badge">System Design</span>
+        <a class="project" href="https://github.com/hiruykassa" target="_blank" rel="noopener">
+          <div class="card">
+            <div class="project-title-row">
+              <span class="project-title">Lucid: Grounded AI Dark Patterns Assistant</span>
+              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+            </div>
+            <div class="badge-row">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">AWS Lambda</span>
+              <span class="tech-badge">Bedrock</span>
+              <span class="tech-badge">OpenSearch</span>
+              <span class="tech-badge">S3</span>
+              <span class="tech-badge">SAM</span>
+            </div>
+            <div class="project-desc">A serverless RAG service (Lambda, API Gateway, Bedrock embeddings, OpenSearch) that answers AI-dark-patterns questions grounded in ~50 HCI papers with inline citations, reaching ~90% faithfulness and ~85% recall@5 on a 50-question benchmark. Cut hallucinations from ~18% to ~6% via chunk reranking and a strict grounding prompt (LLM-as-judge eval harness), holding p95 latency under 2.5s and cost under $0.01/query. Infrastructure codified as AWS SAM with GitHub Actions CI/CD.</div>
           </div>
-          <div class="project-desc">Designed a 6-stage agentic AI workflow automating 5 manual business processes for a real contracting business. Authored a 22-requirement PRD with 4 architecture diagrams mapping API integrations with Google Calendar, Maps, and Twilio SMS.</div>
-        </div>
+        </a>
 
-        <div class="project">
-          <div class="project-title">E-Commerce Funnel &amp; RFM Analysis</div>
-          <div class="project-meta"><a href="https://github.com/hiruykassa/Ecommerce-Funnel-Analysis" target="_blank" rel="noopener">github</a></div>
-          <div>
-            <span class="tech-badge">Python</span>
-            <span class="tech-badge">Pandas</span>
-            <span class="tech-badge">Claude AI</span>
-            <span class="tech-badge">GitHub Copilot</span>
+        <a class="project" href="https://stgeorgemn.org" target="_blank" rel="noopener">
+          <div class="card">
+            <div class="project-title-row">
+              <span class="project-title">St. George Church Website</span>
+              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+            </div>
+            <div class="badge-row">
+              <span class="tech-badge">WordPress</span>
+              <span class="tech-badge">PHP</span>
+            </div>
+            <div class="project-desc">Maintain stgeorgemn.org at 100% uptime alongside a senior software engineer through ongoing WordPress/PHP development. Cut parish staff content-update time ~50% by building custom themes and plugins for the events calendar and media galleries, enabling self-service edits, and reduced vulnerabilities through regular core updates and plugin patching.</div>
           </div>
-          <div class="project-desc">4-stage data pipeline on 541,909 transactions surfacing a 34.6% first-purchase drop-off, 51.8% revenue concentration in the top 10% of customers, and 1,541 at-risk customers as a win-back opportunity via RFM segmentation.</div>
-        </div>
+        </a>
       </div>
     </div>
 
     <div class="social-links">
       <a href="mailto:hiruygirmak@gmail.com" class="social-link">
-        <span class="social-icon">✉</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
         <span>hiruygirmak@gmail.com</span>
       </a>
       <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" target="_blank" rel="noopener" class="social-link">
-        <span class="social-icon">in</span>
-        <span>linkedin.com/in/hiruykassa</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <span>LinkedIn</span>
       </a>
       <a href="https://github.com/hiruykassa" target="_blank" rel="noopener" class="social-link">
-        <span class="social-icon">⚙</span>
-        <span>github.com/hiruykassa</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.58-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.39c1.02 0 2.05.13 3 .39 2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.83.56A11.8 11.8 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+        <span>GitHub</span>
       </a>
     </div>
 
-    <p class="updated">updated 06/14/2026</p>
+    <p class="updated">Updated June 2026</p>
   </div>
 </div>
 
 <!-- BOOKS PAGE -->
 <div id="books" class="page">
   <div class="container">
-    <h1 style="text-align: center;">Books 📚</h1>
+    <h1 style="text-align:center; font-size:2.2rem;">Reading</h1>
     <p class="intro-text">A few of the books I've been reading lately.</p>
 
     <div class="gallery">
@@ -641,60 +794,64 @@
 
     <div class="social-links">
       <a href="mailto:hiruygirmak@gmail.com" class="social-link">
-        <span class="social-icon">✉</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
         <span>hiruygirmak@gmail.com</span>
       </a>
       <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" target="_blank" rel="noopener" class="social-link">
-        <span class="social-icon">in</span>
-        <span>linkedin.com/in/hiruykassa</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <span>LinkedIn</span>
       </a>
       <a href="https://github.com/hiruykassa" target="_blank" rel="noopener" class="social-link">
-        <span class="social-icon">⚙</span>
-        <span>github.com/hiruykassa</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.58-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.39c1.02 0 2.05.13 3 .39 2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.83.56A11.8 11.8 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+        <span>GitHub</span>
       </a>
     </div>
 
-    <p class="updated">updated 06/14/2026</p>
+    <p class="updated">Updated June 2026</p>
   </div>
 </div>
 
-<!-- PHILOSOPHY PAGE -->
+<!-- WRITING / PHILOSOPHY PAGE -->
 <div id="philosophy" class="page">
   <div class="container">
-    <h1 style="text-align: center;">Philosophy &amp; Theology ☦</h1>
+    <h1 style="text-align:center; font-size:2.2rem;">Writing</h1>
     <p class="intro-text">Essays and reflections on philosophy, theology, and the questions worth wrestling with. Read along on Substack.</p>
 
     <div class="substack-cta">
-      <a href="https://substack.com/@snowcreatez/posts" target="_blank" rel="noopener" class="substack-button">
-        <span>📜</span><span>Read on Substack</span>
+      <a href="https://substack.com/@snowcreatez/posts" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Read on Substack
       </a>
     </div>
 
     <div class="social-links">
       <a href="mailto:hiruygirmak@gmail.com" class="social-link">
-        <span class="social-icon">✉</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
         <span>hiruygirmak@gmail.com</span>
       </a>
       <a href="https://www.linkedin.com/in/hiruy-kassa-b17922297/" target="_blank" rel="noopener" class="social-link">
-        <span class="social-icon">in</span>
-        <span>linkedin.com/in/hiruykassa</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <span>LinkedIn</span>
       </a>
       <a href="https://github.com/hiruykassa" target="_blank" rel="noopener" class="social-link">
-        <span class="social-icon">⚙</span>
-        <span>github.com/hiruykassa</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.58-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.39c1.02 0 2.05.13 3 .39 2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .31.21.68.83.56A11.8 11.8 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+        <span>GitHub</span>
       </a>
     </div>
 
-    <p class="updated">updated 06/14/2026</p>
+    <p class="updated">Updated June 2026</p>
   </div>
 </div>
 
 <script>
   var toggle = document.getElementById('themeToggle');
+  var sunIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+  var moonIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
 
   function setToggleLabel() {
     var current = document.documentElement.getAttribute('data-theme');
-    toggle.textContent = current === 'dark' ? '☀ light' : '☾ dark';
+    toggle.innerHTML = current === 'dark' ? sunIcon : moonIcon;
+    toggle.setAttribute('aria-label', current === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
   }
 
   setToggleLabel();
@@ -716,7 +873,7 @@
       document.getElementById(page).classList.add('active');
 
       document.querySelectorAll('.nav-link').forEach(function (l) { l.classList.remove('active'); });
-      link.classList.add('active');
+      document.querySelectorAll('.nav-link[data-page="' + page + '"]').forEach(function (l) { l.classList.add('active'); });
 
       window.scrollTo(0, 0);
     });
